@@ -75,7 +75,7 @@ const App = () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo._id}>
-            {todo.todo} {/* This should match the field name in the backend */}
+            {todo.todo}
             <button className="del-btn" onClick={() => deleteTodo(todo._id)}>
               Delete
             </button>
