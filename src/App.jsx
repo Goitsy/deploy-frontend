@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+axios.defaults.baseURL = import.meta.env.VITE_API_URL; // Should now point to the correct backend URL
+console.log(axios.defaults.baseURL);
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -31,7 +32,7 @@ const App = () => {
       const response = await axios.post("/todos", {
         name: newTodo,
       });
-      setTodos([...todos, response.data]);
+      setTodos((prevTodos) => [...prevTodos, response.data]); // Ensure correct state update
       setNewTodo("");
     } catch (err) {
       console.error(err);
@@ -42,7 +43,7 @@ const App = () => {
   const deleteTodo = async (id) => {
     try {
       await axios.delete(`/todos/${id}`);
-      setTodos(todos.filter((todo) => todo._id !== id));
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id)); // Ensure correct state update
     } catch (err) {
       console.error(err);
       setError("Failed to delete todo. Please try again.");
@@ -71,7 +72,7 @@ const App = () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo._id}>
-            {todo.todo}
+            {todo.todo} {/* This should match the field name in the backend */}
             <button className="del-btn" onClick={() => deleteTodo(todo._id)}>
               Delete
             </button>
