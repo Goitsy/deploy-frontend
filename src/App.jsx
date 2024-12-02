@@ -3,8 +3,9 @@ import axios from "axios";
 import "./App.css";
 
 // Correctly set the axios baseURL
-axios.defaults.baseURL =
-  import.meta.env.VITE_API_URL || "http://localhost:8089"; // Default to localhost if the env variable is not set
+axios.defaults.baseURL = axios.defaults.baseURL =
+  import.meta.env.VITE_API_URL || "http://localhost:8089";
+console.log("Configured API Base URL:", axios.defaults.baseURL);
 
 console.log("API Base URL:", axios.defaults.baseURL);
 
