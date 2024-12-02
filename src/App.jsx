@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
-// Correctly set the axios baseURL
 axios.defaults.baseURL = axios.defaults.baseURL =
   import.meta.env.VITE_API_URL || "http://localhost:8089";
 console.log("Configured API Base URL:", axios.defaults.baseURL);
