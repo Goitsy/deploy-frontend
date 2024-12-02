@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL; // Should now point to the correct backend URL
-console.log(axios.defaults.baseURL);
+// Correctly set the axios baseURL
+axios.defaults.baseURL =
+  import.meta.env.VITE_API_URL || "http://localhost:8089"; // Default to localhost if the env variable is not set
+
+console.log("API Base URL:", axios.defaults.baseURL);
 
 const App = () => {
   const [todos, setTodos] = useState([]);
